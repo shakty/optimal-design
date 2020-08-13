@@ -5,8 +5,7 @@ in order to find the particular experimental design that will maximize the
 information gained as a result of running the experiment. This code accompanies
 the recent paper: 
 
-**Fast model-selection through adapting design of experiments maximizing 
-information gain**\
+**Optimal design of experiments to identify latent behavioral types**\
 Stefano Balietti, Brennan Klein, and Christoph Riedl, 2018.\
 [arXiv:1807.07024](https://arxiv.org/abs/1807.07024)
 
