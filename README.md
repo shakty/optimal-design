@@ -40,7 +40,7 @@ dataset--assuming they have not been sampled
 If you use these methods and this code in your own research, 
 please cite our paper:
 
-Balietti, S., Klein, B. & Riedl, C. (2018). **Optimal design of experiments to identify latent behavioral types**. 
+Balietti, S., Klein, B. & Riedl, C. (2020). **Optimal design of experiments to identify latent behavioral types**. 
 [arXiv:1807.07024](https://arxiv.org/abs/1807.07024)
 
 Bibtex: 
