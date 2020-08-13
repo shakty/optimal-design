@@ -6,7 +6,7 @@ information gained as a result of running the experiment. This code accompanies
 the recent paper: 
 
 **Optimal design of experiments to identify latent behavioral types**\
-Stefano Balietti, Brennan Klein, and Christoph Riedl, 2018.\
+Stefano Balietti, Brennan Klein, and Christoph Riedl, 2020.\
 [arXiv:1807.07024](https://arxiv.org/abs/1807.07024)
 
 This code samples model parameters and simulates likely datasets that you would 
