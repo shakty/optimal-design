@@ -40,15 +40,13 @@ dataset--assuming they have not been sampled
 If you use these methods and this code in your own research, 
 please cite our paper:
 
-Balietti, S., Klein, B. & Riedl, C. (2018). **Fast model-selection through adapting 
-design of experiments maximizing information gain**. 
+Balietti, S., Klein, B. & Riedl, C. (2018). **Optimal design of experiments to identify latent behavioral types**. 
 [arXiv:1807.07024](https://arxiv.org/abs/1807.07024)
 
 Bibtex: 
 ```text
 @article{balietti2018optimaldesign,
-  title={Fast model-selection through adapting design of experiments maximizing
-  information gain},
+  title={Optimal design of experiments to identify latent behavioral types},
   author={Balietti, Stefano; Klein, Brennan and Riedl, Christoph},
   journal={arXiv preprint arXiv:1807.07024},
   year={2018}
