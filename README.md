@@ -45,11 +45,11 @@ Balietti, S., Klein, B. & Riedl, C. (2018). **Optimal design of experiments to i
 
 Bibtex: 
 ```text
-@article{balietti2018optimaldesign,
-  title={Optimal design of experiments to identify latent behavioral types},
-  author={Balietti, Stefano; Klein, Brennan and Riedl, Christoph},
+@article{balietti_optimaldesign_2020,
+  title={Optimal Design of Experiments to Identify Latent Behavioral Types},
+  author={Balietti, S.; Klein, B. and Riedl, C.},
   journal={arXiv preprint arXiv:1807.07024},
-  year={2018}
+  year={2020}
 }
 ```
 
