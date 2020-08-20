@@ -10,7 +10,7 @@ if (!exists('cmpfun')) {
 ## library('combinat')
 library('gtools')
 
-source('R_CODE/matches.R')
+source('matches.R')
 #source('matches.R')
 
 # All combinations in one round.
@@ -170,7 +170,7 @@ makeDatasets1FullGame <- function(collapse=TRUE) {
                                         c(redGame, blueGame),
                                         byrow=TRUE)
         }
-        counter <- counter + 1        
+        counter <- counter + 1
         ## print(paste0('counter ', counter))
       }
     }

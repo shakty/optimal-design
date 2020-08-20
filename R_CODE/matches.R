@@ -1,5 +1,5 @@
 #matches <- read.csv('../DATA_INPUT/matches.csv', header=T, strip.white=TRUE)
-matches <- read.csv('DATA_INPUT/matches.csv', header=T, strip.white=TRUE)
+matches <- read.csv('../DATA_INPUT/matches.csv', header=T, strip.white=TRUE)
 
 N_MATCHES <- length(unique(matches$match))
 

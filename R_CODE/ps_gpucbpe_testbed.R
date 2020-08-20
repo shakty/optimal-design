@@ -17,47 +17,47 @@ library(scales)
 library(lhs)
 suppressMessages(library(data.table))
 suppressMessages(library(randtoolbox))
-library(Matrix, quietly=T, warn.conflicts=F)		
+library(Matrix, quietly=T, warn.conflicts=F)
 
-# set working directory
-wd_path <- "~/Desktop/code_ParamSampledGPUCBPE/"
-setwd(wd_path)
+# Set working directory as needed.
+## wd_path <- "~/Desktop/code_ParamSampledGPUCBPE/"
+## setwd(wd_path)
 
-# source other files
-source("R_CODE/ps_gpucbpe_helper.R")
-source("R_CODE/ps_gpucbpe_simulateDatasets.R")
-source("R_CODE/ps_gpucbpe_process.R")
-source("R_CODE/ps_gpucbpe_histories.R")
-source("R_CODE/ps_gpucbpe_models.R")
-source("R_CODE/ps_gpucbpe_calc_likelihoods.R")
+# Source other files.
+source("ps_gpucbpe_helper.R")
+source("ps_gpucbpe_simulateDatasets.R")
+source("ps_gpucbpe_process.R")
+source("ps_gpucbpe_histories.R")
+source("ps_gpucbpe_models.R")
+source("ps_gpucbpe_calc_likelihoods.R")
 
-# initialize your experiment
-n_dim <- 41                       # how precise do you want your information landscape
+# Initialize your experiment.
+n_dim <- 41                       # How precise do you want your information landscape
 					  	    	  # to be? (creates a 41x41 grid of possible experiments)
 expParam1_range <- c(2.0, 6.0)    # "A" in the manuscript
 expParam2_range <- c(0.2, 0.8)    # "pi" in the manuscript
 
-# space of all possible experiments
-experiment_grid <- expand.grid(A= seq(expParam1_range[1], expParam1_range[2], length.out=n_dim), 
-						 	   PI=seq(expParam2_range[1], expParam2_range[2], length.out=n_dim))
+# Space of all possible experiments.
+experiment_grid <- expand.grid(A  = seq(expParam1_range[1], expParam1_range[2], length.out=n_dim),
+						 	   PI = seq(expParam2_range[1], expParam2_range[2], length.out=n_dim))
 
-sampling_method <- "Uniform"        # how to sample model parameters
-sampling <- "SamplePost_SampleHist" # unsure if needed
+sampling_method <- "Uniform"        # How to sample model parameters.
+sampling <- "SamplePost_SampleHist" # Unsure if needed.
 
 # GPUCB-PE parameters
 L <- 4			    			# Number of previous searches back to look for stopping rule
 failsafe <- 250    				# Number of iterations, in case the stopping rule doesnt work
 rho0 <- 0.001      				# Stopping Threshold for GPUCB_PE
-k <- 1							# Number of "explore" searches per run of the algorithm	
+k <- 1							# Number of "explore" searches per run of the algorithm
 
-# information calculation
+# Information calculation
 asymmetric <- T 				# when calculating the KL divergence, is it symmetric or not?
 
 
-# initializing parameters for search process 
-n_init 		<- 20 					# How many seed points to sample?
+# initializing parameters for search process
+n_init 		<- 16 					# How many seed points to sample?
 sobol 		<- "Sobol" 				# Distribution of seed location: "Random" or "Sobol"
-search 		<- "GPUCBPE" 			# Which algorithm to search with: Random, Grid, GPUCBPE
+search 		<- "GPUCBPE" 	           		# Which algorithm to search with: Random, Grid, GPUCBPE
 n_samples 	<- 1000 				# How many histories to sample per search: 1000, 5000, 10000
 seed 		<- 666 					# Random seed
 set.seed(seed)						# Set the random seed
@@ -67,23 +67,32 @@ model_nums <- c(1,2,3,"all") # unsure if needed
 models_used <- c(1,2,3) # unsure if needed
 current_top_model <- model_nums[1]
 n_players <- 10
-if(n_players%%2 !=0){
-	print("HEY YOU NEED n_players TO BE EVEN")
+if (n_players%%2 !=0) {
+	stop("HEY YOU NEED n_players TO BE EVEN")
 }
 n_pairs <- n_players/2
 n_rounds <- 3
 
-posteriors <- read.csv("DATA_INPUT/posteriors_elgml.csv")
-jet.colors <- rev(colorRampPalette(brewer.pal(11,"Spectral"))(100))
+posteriors <- read.csv("../DATA_INPUT/posteriors_elgml.csv")
+jet.colors <- rev(colorRampPalette(brewer.pal(11, "Spectral"))(100))
 
-##########################################################
-# Now let's practice on a grid
-history <- initialize_process(posteriors, n_init, expParam1_range, expParam2_range, n_dim, sampling_method, n_players, n_rounds, 
-							n_samples, sobol, sampling, asymmetric, L, models_used, current_top_model)
-plot_landscape(history, n_samples, n_init, sobol, n_dim, expParam1_range, expParam2_range)
+#################################
+# Now let's practice on a grid. #
+#################################
 
-history <- run_algorithm_once(history, experiment_grid, posteriors, rho0, failsafe, L, n_samples, k, asymmetric, sampling, 
-							search, n_init, sampling_method, sobol, seed, models_used, current_top_model)
-plot_landscape(history, n_samples, n_init, sobol, n_dim, expParam1_range, expParam2_range)
+history <- initialize_process(posteriors, n_init, expParam1_range,
+                              expParam2_range, n_dim, sampling_method,
+                              n_players, n_rounds, n_samples, sobol, sampling,
+                              asymmetric, L, models_used, current_top_model)
 
 
+plot_landscape(history, n_samples, n_init, sobol, n_dim, expParam1_range,
+               expParam2_range)
+
+history <- run_algorithm_once(history, experiment_grid, posteriors, rho0,
+                              failsafe, L, n_samples, k, asymmetric, sampling,
+                              search, n_init, sampling_method, sobol, seed,
+                              models_used, current_top_model)
+
+plot_landscape(history, n_samples, n_init, sobol, n_dim, expParam1_range,
+               expParam2_range)
