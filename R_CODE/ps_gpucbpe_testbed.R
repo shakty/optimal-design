@@ -32,14 +32,19 @@ source("ps_gpucbpe_models.R")
 source("ps_gpucbpe_calc_likelihoods.R")
 
 # Initialize your experiment.
-n_dim <- 41                       # How precise do you want your information landscape
-					  	    	  # to be? (creates a 41x41 grid of possible experiments)
+#############################
+
+# How precise do you want your information landscape to be? \
+## (creates a 41x41 grid of possible experiments).
+n_dim <- 41
+
 expParam1_range <- c(2.0, 6.0)    # "A" in the manuscript
 expParam2_range <- c(0.2, 0.8)    # "pi" in the manuscript
 
 # Space of all possible experiments.
-experiment_grid <- expand.grid(A  = seq(expParam1_range[1], expParam1_range[2], length.out=n_dim),
-						 	   PI = seq(expParam2_range[1], expParam2_range[2], length.out=n_dim))
+seqA <- seq(expParam1_range[1], expParam1_range[2], length.out=n_dim)
+seqB <- seq(expParam2_range[1], expParam2_range[2], length.out=n_dim)
+experiment_grid <- expand.grid(A = seqA, PI = seqPI)
 
 sampling_method <- "Uniform"        # How to sample model parameters.
 sampling <- "SamplePost_SampleHist" # Unsure if needed.
@@ -55,12 +60,12 @@ asymmetric <- T 				# when calculating the KL divergence, is it symmetric or not
 
 
 # initializing parameters for search process
-n_init 		<- 16 					# How many seed points to sample?
-sobol 		<- "Sobol" 				# Distribution of seed location: "Random" or "Sobol"
-search 		<- "GPUCBPE" 	           		# Which algorithm to search with: Random, Grid, GPUCBPE
-n_samples 	<- 1000 				# How many histories to sample per search: 1000, 5000, 10000
-seed 		<- 666 					# Random seed
-set.seed(seed)						# Set the random seed
+n_init 		<- 16 				# How many seed points to sample?
+sobol 		<- "Sobol" 			# Distribution of seed location: "Random" or "Sobol"
+search 		<- "GPUCBPE"        # Which algorithm to search with: Random, Grid, GPUCBPE
+n_samples 	<- 1000 			# How many histories to sample per search: 1000, 5000, 10000
+seed 		<- 666 				# Random seed
+set.seed(seed)					# Set the random seed
 
 # initialize game details
 model_nums <- c(1,2,3,"all") # unsure if needed
