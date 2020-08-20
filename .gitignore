@@ -1,0 +1,10 @@
+\#*\#
+.\#*
+.settings
+.project
+*~
+_*
+
+*.geany
+*.swp
+Session.vim
