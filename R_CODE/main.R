@@ -83,8 +83,8 @@ seed        <- 666          # Random seed
 set.seed(seed)              # Set the random seed
 
 ## Initialize game details.
-model_nums <- c(1,2,3, "all") # Unsure if needed.
-models_used <- c(1,2,3)       # Unsure if needed.
+model_nums <- c(1,2,3, "all") # (Unsure if needed).
+models_used <- c(1,2,3)       # (Unsure if needed).
 
 ## If asymmetric, this model is taken as reference.
 current_top_model <- model_nums[1]
