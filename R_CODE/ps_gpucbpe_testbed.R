@@ -54,7 +54,7 @@ seqPI <- seq(expParam2_range[1], expParam2_range[2], length.out=n_dim)
 experiment_grid <- expand.grid(A = seqA, PI = seqPI)
 
 sampling_method <- "Uniform"        # How to sample model parameters.
-sampling <- "SamplePost_SampleHist" # Unsure if needed.
+sampling <- "SamplePost_SampleHist" # Only value accepted for now.
 
 # GPUCB-PE parameters.
 ######################
@@ -67,7 +67,9 @@ k <- 1            # Number of "explore" searches per run of the algorithm
 # Information calculation.
 ##########################
 
-# When calculating the KL divergence, is it symmetric or not?
+## When calculating the KL divergence, is it symmetric or not?
+## Note: KL distance from A to B is generally different from distance
+## from B to A. The symmetric version takes the average of the two distances.
 asymmetric <- T
 
 
