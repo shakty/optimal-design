@@ -91,9 +91,13 @@ initialize_process <- function(posteriors, n_init, expParam1_range,
 ###################################
 
 ## Gaussian process
-run_algorithm_once <- function(history, datagrid, posteriors, rho0, failsafe, L, n_samples, k, asymmetric,
-                               sampling, search, n_init, sampling_method, sobol, seed, models_used, current_top_model=1) {
-    ## Iterates through the Gaussian Process functions, searching more and more spaces.
+run_algorithm_once <- function(history, datagrid, posteriors, rho0, failsafe,
+                               L, n_samples, k, asymmetric, sampling, search,
+                               n_init, sampling_method, sobol, seed,
+                               models_used, current_top_model=1) {
+
+    ## Iterates through the Gaussian Process functions,
+    ## searching more and more spaces.
 
     ## Info string.
     istr <- "Current Round is: %03i (%s) ... Stop is: %04f ... Currently stopping at: %s"
@@ -164,18 +168,32 @@ run_algorithm_once <- function(history, datagrid, posteriors, rho0, failsafe, L,
 
     ## Random.
     current_round <- dim(history)[1]
-    history <- add_random_point(history, datagrid, current_round, n_samples, posteriors, k, L, asymmetric, sampling, rho0, search, n_init, sampling_method, models_used, current_top_model)
+    history <- add_random_point(history, datagrid, current_round, n_samples,
+                                posteriors, k, L, asymmetric, sampling, rho0,
+                                search, n_init, sampling_method, models_used,
+                                current_top_model)
     current_round <- dim(history)[1]
     while(current_round < failsafe) {
-        history <- add_random_point(history, datagrid, current_round, n_samples, posteriors, k, L, asymmetric, sampling, rho0, search, n_init, sampling_method, models_used, current_top_model)
+        history <- add_random_point(history, datagrid, current_round,n_samples,
+                                    posteriors, k, L, asymmetric, sampling,
+                                    rho0, search, n_init, sampling_method,
+                                    models_used, current_top_model)
         current_round <- dim(history)[1]
         stop <- all(tail(history,L)$Stop > (1-rho0))
         if (stop) {
             print(sprintf(istr, current_round, search, round(tail(history,1)$Stop, 5), Sys.time()))
-            history$sampling_method <- sampling_method; history$Search <- search; history$n_init <- n_init
+            history$sampling_method <- sampling_method
+            history$Search <- search
+            history$n_init <- n_init
             history$n_samples <- n_samples; history$Sobol <- sobol; history$Sampling <- sampling
-            history$csvname <- make_filename(asymmetric, sampling, n_init, sampling_method, n_samples, search, seed, sobol, models_used, current_top_model, dtype="CSV")
-            history$pngname <- make_filename(asymmetric, sampling, n_init, sampling_method, n_samples, search, seed, sobol, models_used, current_top_model, dtype="FIG")
+            history$csvname <- make_filename(asymmetric, sampling, n_init,
+                                             sampling_method, n_samples,
+                                             search, seed, sobol, models_used,
+                                             current_top_model, dtype="CSV")
+            history$pngname <- make_filename(asymmetric, sampling, n_init,
+                                             sampling_method, n_samples, search,
+                                             seed, sobol, models_used,
+                                             current_top_model, dtype="FIG")
             history$SearchLabel <- "Rand"
             return(history)
         }
@@ -183,18 +201,32 @@ run_algorithm_once <- function(history, datagrid, posteriors, rho0, failsafe, L,
     print(sprintf(istr, current_round, serch, round(tail(history,1)$Stop, 5), Sys.time()))
     history$sampling_method <- sampling_method; history$Search <- search; history$n_init <- n_init
     history$n_samples <- n_samples; history$Sobol <- sobol; history$Sampling <- sampling
-    history$csvname <- make_filename(asymmetric, sampling, n_init, sampling_method, n_samples, search, seed, sobol, models_used, current_top_model, dtype="CSV")
-    history$pngname <- make_filename(asymmetric, sampling, n_init, sampling_method, n_samples, search, seed, sobol, models_used, current_top_model, dtype="FIG")
+    history$csvname <- make_filename(asymmetric, sampling, n_init,
+                                     sampling_method, n_samples, search, seed,
+                                     sobol, models_used, current_top_model,
+                                     dtype="CSV")
+    history$pngname <- make_filename(asymmetric, sampling, n_init,
+                                     sampling_method, n_samples, search, seed,
+                                     sobol, models_used, current_top_model,
+                                     dtype="FIG")
     history$SearchLabel <- "Rand"
     return(history)
 
 }
 
-run_algorithm_grid <- function(datagrid, posteriors, n_samples, asymmetric, sampling, sampling_method, seed, models_used=c(1,2,3,4), current_top_model=1) {
+run_algorithm_grid <- function(datagrid, posteriors, n_samples, asymmetric,
+                               sampling, sampling_method, seed,
+                               models_used=c(1,2,3,4), current_top_model=1) {
+
     istr <- "Current Round is: %03i (Grid) ... Just dug at: (%04f, %04f) ... Current Time is: %s"
-    k <- 0; n_init <- 0; search <- "Grid"; sobol <- "Grid"
+    k <- 0
+    n_init <- 0
+    search <- "Grid"
+    sobol <- "Grid"
     history <- datagrid
-    history$I <- 0; history$Round <- c(1:dim(datagrid)[1]); history$Stop <- 2
+    history$I <- 0
+    history$Round <- c(1:dim(datagrid)[1])
+    history$Stop <- 2
     for (row in history$Round) {
         A <- history[row,]$A
         PI <- history[row,]$PI
