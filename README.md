@@ -19,7 +19,7 @@ generated under several competing models.
 ## Scripts
 
 Start with the ps_gpucbpe_testbed.R file. It initializes the process that was 
-used in "Fast Model-Selection through Adaptive Design of Experiments Maximizing 
+used in "Fast Model-Selection through Adaxptive Design of Experiments Maximizing 
 Information Gain", recreating Figure 3c. 
 
 1. [ps_gpucbpe_testbed.R](https://github.com/jkbren/ps-gpucbpe/blob/master/ps-gpucbpe/PS_GPUCBPE/R_CODE/ps_gpucbpe_testbed.R) - start here!
