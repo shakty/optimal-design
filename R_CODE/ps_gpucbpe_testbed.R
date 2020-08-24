@@ -5,6 +5,13 @@
 ###        code by: Brennan Klein          ###
 ###                                        ###
 ##############################################
+
+## Associated Manuscript:
+## Balietti, S., Klein, B. & Riedl, C. (2020).
+## Optimal design of experiments to identify latent behavioral types.
+## https://arxiv.org/abs/1807.07024
+
+
 # libraries
 library(ggplot2)
 library(stringr)
