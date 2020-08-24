@@ -31,12 +31,12 @@ library(Matrix, quietly=T, warn.conflicts=F)
 ## setwd(wd_path)
 
 # Source other files.
-source("ps_gpucbpe_helper.R")
-source("ps_gpucbpe_simulateDatasets.R")
-source("ps_gpucbpe_process.R")
-source("ps_gpucbpe_histories.R")
-source("ps_gpucbpe_models.R")
-source("ps_gpucbpe_calc_likelihoods.R")
+source("helper.R")
+source("simulateDatasets.R")
+source("process.R")
+source("histories.R")
+source("models.R")
+source("calc_likelihoods.R")
 
 # Initialize your experiment.
 #############################
