@@ -41,8 +41,8 @@ dataset--assuming they have not been sampled
 If you use these methods and this code in your own research,
 please cite our paper:
 
-Balietti, S., Klein, B. & Riedl, C. (2020). _Experimental Economics_ **Optimal design of experiments to identify latent behavioral types**.
-[Experimental Economics](https://link.springer.com/article/10.1007%2Fs10683-020-09680-w)
+Balietti, S., Klein, B. & Riedl, C. (2020). _[Experimental Economics](https://link.springer.com/article/10.1007%2Fs10683-020-09680-w)_ **Optimal design of experiments to identify latent behavioral types**.
+
 
 Bibtex:
 ```text
