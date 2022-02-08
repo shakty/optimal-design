@@ -23,17 +23,17 @@ used in "Fast Model-Selection through Adaxptive Design of Experiments Maximizing
 Information Gain", recreating Figure 3c.
 
 1. [main.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/main.R) - start here!
-2. [simulateDatasets.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/ps_gpucbpatasets.R) - this script houses the Parameter-Sampled G
+2. [simulateDatasets.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/simulateDatasets.R) - this script houses the Parameter-Sampled G
 PUCB-PE code
 3. [models.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/models.R) - the four models used in our model comparison,
 including three from El-Gamal & Palfrey (1995)
 4. [process.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/process.R) - Gaussian Process script, using functions from GPfit,
 adapted for optimizing experimental design
-5. [histories.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/psstories.R) - enumerates all possible game histories
-6. [helper.R](https://github.com/shakty/optimal-design/blob/master/R_CODE_helper.R) - plotting, statistics, and file naming
-7. [calc_likelihoods.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/ps_gpucbplihoods.R) - used for calculating the likelihoods of each
+5. [histories.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/histories.R) - enumerates all possible game histories
+6. [helper.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/helper.R) - plotting, statistics, and file naming
+7. [calc_likelihoods.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/calc_likelihoods.R) - used for calculating the likelihoods of each
 dataset--assuming they have not been sampled
-8. [matches.R](https://github.com/shakty/optimal-design/blob/master/ps-gpucmatches.R) - enumerates possible pairings in the experiment
+8. [matches.R](https://github.com/shakty/optimal-design/blob/master/matches.R) - enumerates possible pairings in the experiment
 
 
 ## Citation   <a name="citation"/>
