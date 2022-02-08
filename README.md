@@ -33,7 +33,7 @@ adapted for optimizing experimental design
 6. [helper.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/helper.R) - plotting, statistics, and file naming
 7. [calc_likelihoods.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/calc_likelihoods.R) - used for calculating the likelihoods of each
 dataset--assuming they have not been sampled
-8. [matches.R](https://github.com/shakty/optimal-design/blob/master/matches.R) - enumerates possible pairings in the experiment
+8. [matches.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/matches.R) - enumerates possible pairings in the experiment
 
 
 ## Citation   <a name="citation"/>
