@@ -18,10 +18,6 @@ generated under several competing models.
 
 ### Scripts
 
-Start with the ps_gpucbpe_testbed.R file. It initializes the process that was
-used in "Fast Model-Selection through Adaxptive Design of Experiments Maximizing
-Information Gain", recreating Figure 3c.
-
 1. [main.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/main.R) - start here!
 2. [simulateDatasets.R](https://github.com/shakty/optimal-design/blob/master/R_CODE/simulateDatasets.R) - this script houses the Parameter-Sampled G
 PUCB-PE code
