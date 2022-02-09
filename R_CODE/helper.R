@@ -8,44 +8,44 @@
 # Plotting Processes 
 
 plot_landscape <- function(history, n_samples, n_init, sobol, n_dim, expParam1_range, expParam2_range, k=1, model_num=1){
-	# Does the landscape plotting, without the max/min/etc. points added on.
-	datagrid <- expand.grid(A= seq(expParam1_range[1], expParam1_range[2], length.out=n_dim), 
-						    PI=seq(expParam2_range[1], expParam2_range[2], length.out=n_dim))
-	
-	coords <- jitter_points(history[c("PI","A")], datagrid, history)
-	history$A  <- coords$A
-	history$PI <- coords$PI
-	
-	GP <- run_gp(history, datagrid)
-	df <- data.frame(GP$complete_data)
-	colnames(df) <- c("A", "PI", "Information", "MSE")
-	df <- df[df$PI>=0.2 & df$PI<=0.8,]
-	max_point <- df[which.max(df$Information),]
-	coords <- as.numeric(max_point[1:2])
-	max_point <- data.frame(A=coords[1], PI=coords[2])
-
-	title <- paste("Model: ", model_num, " ... Number of Searches: ", dim(history)[1], sep="")	
-	
-	out <- ggplot(df, aes(x=PI,y=A, guides=T)) + 
-		geom_point(aes(color=Information), alpha=0.975, size=200/n_dim, shape=15) + xlim(c(0.185,0.815)) +
-		scale_color_gradientn(colors=jet.colors) + 
-		geom_point(data=history, aes(x=PI, y=A, fill = "Searches"), size=1.4, shape=21, color="white", alpha=0.8) +
-		geom_point(data=max_point, aes(x=PI, y=A, fill = "Maximum"), size=6, shape=24, color="white", alpha=0.8) +
-		ggtitle(title) + theme_minimal() + xlab(TeX("$\\pi$")) + ylab(TeX("$A$")) + 
-		scale_fill_manual(name='', values=c("Searches"='black', "Maximum"='deeppink'), guide='legend') +
-		guides(fill = guide_legend(override.aes = list(shape=c(24, 21), color=c("deeppink", "black"), size=c(3,2)))) + 
-		theme(text=element_text(size=12, family="Times"), 
-			plot.title = element_text(family="Times", hjust=0.5, size=15), 
-	        axis.title.x = element_text(size=16),
-	        axis.text.x = element_text(size=14),
-	        axis.text.y = element_text(size=14),
-	        axis.title.y = element_text(size=16),
-	        axis.ticks.x=element_blank(), 
-	        axis.ticks.y=element_blank(), 
-	        panel.border = element_blank(), panel.grid.major = element_blank(),
-	        panel.grid.minor = element_blank(), axis.line = element_blank())
-	
-	return(list(out))
+  # Does the landscape plotting, without the max/min/etc. points added on.
+  datagrid <- expand.grid(A= seq(expParam1_range[1], expParam1_range[2], length.out=n_dim), 
+                          PI=seq(expParam2_range[1], expParam2_range[2], length.out=n_dim))
+  
+  coords <- jitter_points(history[c("PI","A")], datagrid, history)
+  history$A  <- coords$A
+  history$PI <- coords$PI
+  
+  GP <- run_gp(history, datagrid)
+  df <- data.frame(GP$complete_data)
+  colnames(df) <- c("A", "PI", "Information", "MSE")
+  df <- df[df$PI>=0.2 & df$PI<=0.8,]
+  max_point <- df[which.max(df$Information),]
+  coords <- as.numeric(max_point[1:2])
+  max_point <- data.frame(A=coords[1], PI=coords[2])
+  
+  title <- paste("Model: ", model_num, " ... Number of Searches: ", dim(history)[1], sep="")	
+  
+  out <- ggplot(df, aes(x=PI,y=A, guides=T)) + 
+    geom_point(aes(color=Information), alpha=0.975, size=200/n_dim, shape=15) + xlim(c(0.185,0.815)) +
+    scale_color_gradientn(colors=jet.colors) + 
+    geom_point(data=history, aes(x=PI, y=A, fill = "Searches"), size=1.4, shape=21, color="white", alpha=0.8) +
+    geom_point(data=max_point, aes(x=PI, y=A, fill = "Maximum"), size=6, shape=24, color="white", alpha=0.8) +
+    ggtitle(title) + theme_minimal() + xlab(TeX("$\\pi$")) + ylab(TeX("$A$")) + 
+    scale_fill_manual(name='', values=c("Maximum"='deeppink', "Searches"='black'), guide='legend') +
+    guides(fill = guide_legend(override.aes = list(shape=c(24, 21), color=c("deeppink", "black"), size=c(3,2)))) + 
+    theme(text=element_text(size=12, family="Times"), 
+          plot.title = element_text(family="Times", hjust=0.5, size=15), 
+          axis.title.x = element_text(size=16),
+          axis.text.x = element_text(size=14),
+          axis.text.y = element_text(size=14),
+          axis.title.y = element_text(size=16),
+          axis.ticks.x=element_blank(), 
+          axis.ticks.y=element_blank(), 
+          panel.border = element_blank(), panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), axis.line = element_blank())
+  
+  return(list(out))
 }
 
 make_filename <- function(asymmetric, sampling, n_init, method, n_samples, search, seed, sobol, models_used, top_model, dtype="CSV"){
